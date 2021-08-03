@@ -10,18 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_02_203134) do
+ActiveRecord::Schema.define(version: 2021_08_03_033055) do
 
   create_table "companies", force: :cascade do |t|
     t.string "company_name"
+    t.boolean "provide_insurance"
+    t.integer "paid_vacation_days"
+    t.integer "entry_salary"
+    t.integer "max_salary"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "username"
-    t.integer "company_id"
     t.string "password"
-    t.index ["company_id"], name: "index_users_on_company_id"
+    t.string "company_name"
+    t.integer "company_id"
   end
 
 end
