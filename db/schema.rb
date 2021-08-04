@@ -19,9 +19,10 @@ ActiveRecord::Schema.define(version: 2021_08_02_203134) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "username"
-    t.integer "company_id"
     t.string "password"
-    t.index ["company_id"], name: "index_users_on_company_id"
+    t.string "company_name"
+    t.integer "company_id"
+    t.string "email"
   end
 
 end
