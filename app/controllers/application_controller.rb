@@ -14,15 +14,13 @@ class ApplicationController < Sinatra::Base
     200
   end
   
-  # Add your routes here
-  get "/" do
-    { message: "Good luck with your project!" }.to_json
-  end
+
 
   get "/users" do
     User.all.to_json
   end
 
+  
   post "/sign-in" do
     user = User.find_by(username: params[:email])
     if (user[:password] == params[:password])
@@ -32,6 +30,7 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  
   post "/users" do 
     user = User.create(user_params)
     company= Company.find_or_create_by(company_name: user_params[:company_name])
@@ -48,4 +47,23 @@ class ApplicationController < Sinatra::Base
     params.select {|param,value| allowed_params.include?(param)}
   end
 
+
+
+    patch '/users/:id' do
+      user = User.find(params[:id])
+      user.update(
+        name: params[:name],
+        username: params[:username],
+        password: params[:password]
+      )
+      user.to_json
+    end
+
+    delete '/users/:id' do
+     
+      user = User.find(params[:id])
+      user.destroy
+      user.to_json
+    end
+    
 end
