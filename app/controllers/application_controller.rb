@@ -45,9 +45,11 @@ class ApplicationController < Sinatra::Base
   def user_params
     allowed_params = %w(name username company_name email password)
     params.select {|param,value| allowed_params.include?(param)}
+
+  get '/users/:id' do
+    user = User.find_by(id: params[:id])
+    user.to_json
   end
-
-
 
     patch '/users/:id' do
       user = User.find(params[:id])
