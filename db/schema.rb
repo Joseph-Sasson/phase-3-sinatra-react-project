@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_04_153937) do
+ActiveRecord::Schema.define(version: 2021_08_03_033055) do
 
   create_table "companies", force: :cascade do |t|
     t.string "company_name"
@@ -20,9 +20,8 @@ ActiveRecord::Schema.define(version: 2021_08_04_153937) do
     t.string "name"
     t.string "username"
     t.string "password"
-    t.string "company_name"
-    t.integer "company_id"
     t.string "email"
+    t.integer "company_id"
   end
 
 end
