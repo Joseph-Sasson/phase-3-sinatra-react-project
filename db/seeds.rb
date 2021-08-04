@@ -27,5 +27,4 @@ user9 = User.create(company_id: monsters.id, name: "James P. Sullivan", username
 user10 = User.create(company_id: monsters.id, name: "Mike Wazowski", username: "one_eye_mike", password: "celia1", company_name: "Monsters Inc", email: 'mike@montersinc.com')
 user11 = User.create(company_id: test1.id, name: "Test", username: "test", password: "test1", company_name: "Test", email: 'test@test.com')
 
-
 puts "✅ Done seeding!"
