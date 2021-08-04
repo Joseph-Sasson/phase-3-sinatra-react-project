@@ -41,7 +41,7 @@ class ApplicationController < Sinatra::Base
   end
 
   def user_params
-    allowed_params = %w(name username company_name email password)
+    allowed_params = %w(name username company_id email password)
     params.select {|param,value| allowed_params.include?(param)}
   end
 
