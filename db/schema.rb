@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2021_08_03_033055) do
     t.string "password"
     t.string "email"
     t.integer "company_id"
+    t.index ["company_id"], name: "index_users_on_company_id"
   end
 
 end
