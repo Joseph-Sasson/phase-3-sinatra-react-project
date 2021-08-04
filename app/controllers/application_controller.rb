@@ -14,8 +14,6 @@ class ApplicationController < Sinatra::Base
     200
   end
   
-
-
   get "/users" do
     User.all.to_json
   end
@@ -45,27 +43,26 @@ class ApplicationController < Sinatra::Base
   def user_params
     allowed_params = %w(name username company_name email password)
     params.select {|param,value| allowed_params.include?(param)}
+  end
 
   get '/users/:id' do
     user = User.find_by(id: params[:id])
     user.to_json
   end
 
-    patch '/users/:id' do
-      user = User.find(params[:id])
-      user.update(
-        name: params[:name],
-        username: params[:username],
-        password: params[:password]
-      )
-      user.to_json
-    end
+  patch '/users/:id' do
+    user = User.find(params[:id])
+    user.update(
+      name: params[:name],
+      username: params[:username],
+      password: params[:password]
+    )
+    user.to_json
+  end
 
-    delete '/users/:id' do
-     
-      user = User.find(params[:id])
-      user.destroy
-      user.to_json
-    end
-    
+  delete '/users/:id' do
+    user = User.find(params[:id])
+    user.destroy
+    user.to_json
+  end
 end
