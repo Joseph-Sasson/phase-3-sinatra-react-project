@@ -20,7 +20,7 @@ user5 = User.create(company_id: marvel.id, name: "Tony Stark", username: "iron_m
 user6 = User.create(company_id: marvel.id, name: "Peter Parker", username: "spiderman", password: "mj1", company_name: "Marvel", email: 'spiderman@marvel.com')
 user7 = User.create(company_id: swim.id, name: "Rick Sanchez", username: "pickle_rick", password: "beth1", company_name: "AdultSwim", email: 'rick@adultswim.com')
 user8 = User.create(company_id: swim.id, name: "Morty Smith", username: "get_schwifty", password: "jessica1", company_name: "AdultSwim", email: 'morty@adultswim.com')
-user9 = User.create(company_id: monsters.id, name: "James P. Sullivan", username: "sully", password: "scare1", company_name: "Monsters Inc", email: 'sully@monsterinc.com')
+user9 = User.create(company_id: monsters.id, name: "James P. Sullivan", username: "sully", password: "scare1", company_name: "Monsters Inc", email: 'sully@monstersinc.com')
 user10 = User.create(company_id: monsters.id, name: "Mike Wazowski", username: "one_eye_mike", password: "celia1", company_name: "Monsters Inc", email: 'mike@montersinc.com')
 
 puts "✅ Done seeding!"
