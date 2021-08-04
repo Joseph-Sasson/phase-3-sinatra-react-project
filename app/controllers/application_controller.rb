@@ -8,10 +8,11 @@ class ApplicationController < Sinatra::Base
 
   get '/users/:id' do
     user = User.find_by(id: params[:id])
+    user.to_json
   end
 
   post '/sign-in' do
-    user = User.find_by(username: params[:email])
+    user = User.find_by(email: params[:email])
     if (user[:password] == params[:password])
       user.to_json
     else 
