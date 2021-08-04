@@ -1,12 +1,23 @@
 class ApplicationController < Sinatra::Base
-  set :default_content_type, 'application/json'
+   set :default_content_type, 'application/json'
   
-  # Add your routes here
-  get "/users" do
-    users = User.all
-
-    users.to_json(only: [:company_name], include: :users)
+  configure do
+    enable :cross_origin
+    set :allow_origin, "*" 
+    set :allow_methods, [:get, :post, :patch, :delete, :options] # allows these HTTP verbs
+    set :expose_headers, ['Content-Type']
   end
+
+  options "*" do
+    response.headers["Allow"] = "HEAD,GET,PUT,POST,DELETE,OPTIONS"
+    response.headers["Access-Control-Allow-Headers"] = "X-Requested-With, X-HTTP-Method-Override, Content-Type, Cache-Control, Accept"
+    200
+  end
+
+  get "/users" do
+    User.all.to_json
+  end
+
 
   post '/sign-in' do
     
@@ -29,6 +40,7 @@ class ApplicationController < Sinatra::Base
     end
 
     delete '/users/:id' do
+     
       user = User.find(params[:id])
       user.destroy
       user.to_json
