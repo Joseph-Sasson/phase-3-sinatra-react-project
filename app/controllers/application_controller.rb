@@ -17,7 +17,7 @@ class ApplicationController < Sinatra::Base
   # GET
   
   get "/users" do
-    User.all.to_json
+    User.all.to_json(:include => :company)
   end
 
   get '/users/:id' do
@@ -30,7 +30,7 @@ class ApplicationController < Sinatra::Base
   post "/sign-in" do
     user = User.find_by(email: params[:email])
     if (user[:password] == params[:password])
-      user.to_json
+      user.to_json(:include => :company)
     else 
       {error: 'Incorrect Email or Password'}.to_json
     end
@@ -38,9 +38,6 @@ class ApplicationController < Sinatra::Base
 
   post "/users" do 
     user = User.create(user_params)
-    company = Company.find_or_create_by(company_name: user_params[:company_name])
-    user.company = company
-    user.save
     puts user_params.inspect
     puts params.inspect
     puts user.inspect
@@ -67,7 +64,7 @@ class ApplicationController < Sinatra::Base
   private 
 
   def user_params
-    allowed_params = %w(name username company_id email password)
+    allowed_params = %w(name username email password company_name)
     params.select {|param,value| allowed_params.include?(param)}
   end
 end
