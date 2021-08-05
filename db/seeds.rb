@@ -24,6 +24,5 @@ user8 = User.create(company_id: swim.id, name: "Morty Smith", username: "get_sch
 user9 = User.create(company_id: monsters.id, name: "James P. Sullivan", username: "sully", password: "scare1", email: 'sully@monstersinc.com')
 user10 = User.create(company_id: monsters.id, name: "Mike Wazowski", username: "one_eye_mike", password: "celia1", email: 'mike@montersinc.com')
 user11 = User.create(company_id: test.id, name: "Test", username: "test", password: "test1", email: 'test@test.com')
-user12 = User.create(company_id: test.id, name: "Delete Test", username: "Delete", password: "delete1", email: 'delete@test.com')
 
 puts "✅ Done seeding!"
