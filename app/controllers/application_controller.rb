@@ -13,11 +13,19 @@ class ApplicationController < Sinatra::Base
     response.headers["Access-Control-Allow-Headers"] = "X-Requested-With, X-HTTP-Method-Override, Content-Type, Cache-Control, Accept"
     200
   end
+
+  # GET
   
   get "/users" do
     User.all.to_json
   end
 
+  get '/users/:id' do
+    user = User.find_by(id: params[:id])
+    user.to_json
+  end
+
+  # POST
   
   post "/sign-in" do
     user = User.find_by(email: params[:email])
@@ -28,7 +36,6 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  
   post "/users" do 
     user = User.create(user_params)
     company= Company.find_or_create_by(company_name: user_params[:company_name])
@@ -45,10 +52,7 @@ class ApplicationController < Sinatra::Base
     params.select {|param,value| allowed_params.include?(param)}
   end
 
-  get '/users/:id' do
-    user = User.find_by(id: params[:id])
-    user.to_json
-  end
+# PATCH
 
   patch '/users/:id' do
     user = User.find(params[:id])
@@ -59,6 +63,8 @@ class ApplicationController < Sinatra::Base
     )
     user.to_json
   end
+
+  # DELETE
 
   delete '/users/:id' do
     user = User.find(params[:id])
