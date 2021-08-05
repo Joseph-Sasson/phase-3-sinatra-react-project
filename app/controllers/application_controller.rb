@@ -39,7 +39,7 @@ class ApplicationController < Sinatra::Base
   post "/users" do 
     user = User.create(user_params)
     company = Company.find_or_create_by(company_name: user_params[:company_name])
-    user.company= company
+    user.company = company
     user.save
     puts user_params.inspect
     puts params.inspect
