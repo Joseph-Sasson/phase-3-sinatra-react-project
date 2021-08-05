@@ -28,13 +28,19 @@ class ApplicationController < Sinatra::Base
   # POST
   
   post "/sign-in" do
-    user = User.find_by(email: params[:email])
-    if (user[:password] == params[:password])
+    if User.find_by(email: params[:email])
+      user = User.find_by(email: params[:email])
+      if (user[:password] == params[:password])
       user.to_json(:include => :company)
+      else 
+        {error: 'Incorrect Email or Password'}.to_json
+      end
     else 
       {error: 'Incorrect Email or Password'}.to_json
     end
   end
+
+
 
   post "/users" do 
     user = User.create(user_params)
