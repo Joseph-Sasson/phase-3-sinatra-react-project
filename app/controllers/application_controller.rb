@@ -22,7 +22,7 @@ class ApplicationController < Sinatra::Base
 
   get '/users/:id' do
     user = User.find_by(id: params[:id])
-    user.to_json
+    user.to_json(:include => :company)
   end
 
   # POST
@@ -47,7 +47,7 @@ class ApplicationController < Sinatra::Base
     puts user_params.inspect
     puts params.inspect
     puts user.inspect
-    user.to_json
+    user.to_json(:include => :company)
   end
 
 # PATCH
@@ -55,7 +55,7 @@ class ApplicationController < Sinatra::Base
   patch '/users/:id' do
     user = User.find(params[:id])
     user.update(user_params)
-    user.to_json
+    user.to_json(:include => :company)
   end
 
   # DELETE
@@ -63,7 +63,7 @@ class ApplicationController < Sinatra::Base
   delete '/users/:id' do
     user = User.find(params[:id])
     user.destroy
-    user.to_json
+    user.to_json(:include => :company)
   end
 
   # PRIVATE
